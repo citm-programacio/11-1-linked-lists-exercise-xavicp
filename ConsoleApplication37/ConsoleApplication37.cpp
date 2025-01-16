@@ -2,11 +2,60 @@
 //
 
 #include <iostream>
+#include <vector>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+class DynamicArray {
+private:
+    vector<int> data; // Internal container to store the elements
+
+public:
+    // Pushes a value at the end of the list
+    void push_back(const int& value) {
+        data.push_back(value);
+    }
+
+    // Inserts a value at a specific position in the list
+    void insert(unsigned int position, const int& value) {
+        if (position > data.size()) {
+            cout << "Position out of bounds." << endl;
+            return;
+        }
+        data.insert(data.begin() + position, value);
+    }
+
+    // Prints the whole list from beginning to end
+    void print() {
+        for (const int& element : data) {
+            cout << element << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    DynamicArray array;
+
+    cout << "Adding elements at different positions and printing the list each time:\n";
+
+    array.push_back(10); // Add an element to the end
+    array.print();
+
+    array.insert(0, 5); // Insert at the beginning
+    array.print();
+
+    array.insert(1, 15); // Insert at position 1
+    array.print();
+
+    array.insert(3, 20); // Insert at the end
+    array.print();
+
+    array.insert(2, 12); // Insert at position 2
+    array.print();
+
+    return 0;
 }
+
 
 // Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
 // Depurar programa: F5 o menú Depurar > Iniciar depuración
